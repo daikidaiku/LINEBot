@@ -17,17 +17,10 @@ cron によるインターバル撮影により研究室の現在の様子を確
 # DEMO
 ```mermaid
 flowchart TD
-%%    A[main.py] -->B{Check\ncredentials}
-%%    B -->|Yes|F
-%%    B -->|No|D[Open Browser]
-%%    B -->|Expired|E[Refresh]
-%%    F --> A
-%%    D -->|Save|F
-%%    E -->F
-%%    A ---->|Authenticate| H
-%%    G[Image] -->|Upload| H[Google Drive]
-%%    I[Raspberry Pi] -->|Take photo|G
-```
+    A[main.py] -->B{Check\ncredentials}
+    B -->|Yes|F
+
+``` 
 
 # Features
 <!-- By specifying the ID on Google Drive, the photos will be overwritten. This ensures there is no worry about consuming too much storage space.
