@@ -133,152 +133,95 @@ def route_to(startsta, endsta):
     for n in home_num:
         platform_nums.append(n.text+" 番線")
 
-    json_template = { #TODO インデント直す
-    "type": "bubble",
-    "size": "mega",
-    "header": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "FROM",
-              "color": "#ffffff66",
-              "size": "sm"
-            },
-            {
-              "type": "text",
-              "text": stations[0],
-              "color": "#ffffff",
-              "size": "xl",
-              "flex": 1,
-              "weight": "bold"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "TO",
-              "color": "#ffffff66",
-              "size": "sm"
-            },
-            {
-              "type": "text",
-              "text": stations[-1],
-              "color": "#ffffff",
-              "size": "xl",
-              "flex": 1,
-              "weight": "bold"
-            }
-          ]
-        }
-      ],
-      "paddingAll": "20px",
-      "backgroundColor": "#0367D3",
-      "spacing": "md",
-      "height": "154px",
-      "paddingTop": "22px"
-    },
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": total_time,
-          "color": "#000000",
-          "size": "sm"
-        }
-      ]
-    }
-  }
-
-    # 駅と時間の情報をBODYセクションに追加
-    body_contents = json_template["body"]["contents"]
-    for i in range(len(stations)):
-        # 駅情報
-        station_box = {#TODO インデント直す
-      "type": "box",
-      "layout": "horizontal",
-      "contents": [
-        {
-          "type": "text",
-          "text": train_times[i],
-          "size": "sm",
-          "gravity": "center",
-          "wrap": True,
-          "align": "center",
-          "flex": 2
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "filler"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [],
-              "cornerRadius": "30px",
-              "height": "12px",
-              "width": "12px",
-              "borderColor": "#EF454D" if i == 0 else "#6486E3",
-              "borderWidth": "2px"
-            },
-            {
-              "type": "filler"
-            }
-          ],
-          "flex": 0
-        },
-        {
-          "type": "text",
-          "text": stations[i],
-          "gravity": "center",
-          "flex": 4,
-          "weight": "bold",
-          "size": "sm"
-        }
-      ],
-      "spacing": "lg",
-      "cornerRadius": "30px",
-      "margin": "xl" if i == 0 else "none"
-    }
-        body_contents.append(station_box)
-    
-        # 最後の駅以外は間に線とコメントを追加
-        if i < len(stations) - 1:
-            connection_box = { #TODO インデント直す
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
+    json_template = {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
                 {
-                    "type": "text",
-                    "text": spend_times[i],
-                    "align": "end",
-                    "gravity": "center",
-                    "flex": 2,
-                    "size": "xs",
-                    "color": "#8c8c8c"
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "FROM",
+                            "color": "#ffffff66",
+                            "size": "sm"
+                        },
+                        {
+                            "type": "text",
+                            "text": stations[0],
+                            "color": "#ffffff",
+                            "size": "xl",
+                            "flex": 1,
+                            "weight": "bold"
+                        }
+                    ]
                 },
                 {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [
-                    {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "TO",
+                            "color": "#ffffff66",
+                            "size": "sm"
+                        },
+                        {
+                            "type": "text",
+                            "text": stations[-1],
+                            "color": "#ffffff",
+                            "size": "xl",
+                            "flex": 1,
+                            "weight": "bold"
+                        }
+                    ]
+                }
+            ],
+            "paddingAll": "20px",
+            "backgroundColor": "#0367D3",
+            "spacing": "md",
+            "height": "154px",
+            "paddingTop": "22px"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": total_time,
+                    "color": "#000000",
+                    "size": "sm"
+                }
+            ]
+        }
+    }
+
+    # 駅と時間の情報をBODYセクションに追加
+    body_contents = json_template["body"]["contents"]
+    for i in range(len(stations)):
+        # 駅情報
+        station_box = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": train_times[i],
+                    "size": "sm",
+                    "gravity": "center",
+                    "wrap": True,
+                    "align": "center",
+                    "flex": 2
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
                         {
                             "type": "filler"
                         },
@@ -286,55 +229,114 @@ def route_to(startsta, endsta):
                             "type": "box",
                             "layout": "vertical",
                             "contents": [],
-                            "width": "2px",
-                            "backgroundColor": "#B7B7B7" if i < len(stations) - 1 else "#6486E3"
+                            "cornerRadius": "30px",
+                            "height": "12px",
+                            "width": "12px",
+                            "borderColor": "#EF454D" if i == 0 else "#6486E3",
+                            "borderWidth": "2px"
                         },
                         {
                             "type": "filler"
                         }
-                        ],
-                        "flex": 1
-                    }
                     ],
-                    "width": "12px",
                     "flex": 0
                 },
                 {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
+                    "type": "text",
+                    "text": stations[i],
+                    "gravity": "center",
+                    "flex": 4,
+                    "weight": "bold",
+                    "size": "sm"
+                }
+            ],
+            "spacing": "lg",
+            "cornerRadius": "30px",
+            "margin": "xl" if i == 0 else "none"
+        }
+        body_contents.append(station_box)
+    
+        # 最後の駅以外は間に線とコメントを追加
+        if i < len(stations) - 1:
+            connection_box = {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
                     {
                         "type": "text",
-                        "text": platform_nums[2*i],
+                        "text": spend_times[i],
+                        "align": "end",
                         "gravity": "center",
-                        "size": "xs",
-                        "color": "#5c5c5c"
-                    },
-                    {
-                        "type": "text",
-                        "text": lines[i],
-                        "gravity": "center",
+                        "flex": 2,
                         "size": "xs",
                         "color": "#8c8c8c"
                     },
                     {
-                        "type": "text",
-                        "text": platform_nums[2*i + 1],
-                        "gravity": "center",
-                        "size": "xs",
-                        "color": "#5c5c5c"
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    },
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "backgroundColor": "#B7B7B7" if i < len(stations) - 1 else "#6486E3"
+                                    },
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 1
+                            }
+                        ],
+                        "width": "12px",
+                        "flex": 0
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": platform_nums[2*i],
+                            "gravity": "center",
+                            "size": "xs",
+                            "color": "#5c5c5c"
+                        },
+                        {
+                            "type": "text",
+                            "text": lines[i],
+                            "gravity": "center",
+                            "size": "xs",
+                            "color": "#8c8c8c"
+                        },
+                        {
+                            "type": "text",
+                            "text": platform_nums[2*i + 1],
+                            "gravity": "center",
+                            "size": "xs",
+                            "color": "#5c5c5c"
+                        }
+                        ],
+                        "flex": 4,
+                        "justifyContent": "center"
                     }
-                    ],
-                    "flex": 4,
-                    "justifyContent": "center"
-                }
                 ],
                 "spacing": "lg",
                 "height": "64px"
             }
+            
             separator = {
                 "type": "separator"
             }
+            
             body_contents.append(separator)
             body_contents.append(connection_box)
             body_contents.append(separator)

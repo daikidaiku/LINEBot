@@ -31,124 +31,124 @@ configuration = Configuration(
     access_token = os.getenv('LINE_ACCESS_TOKEN')
 )
 
-message_dict = { #TODO インデントを修正する
+message_dict = {
     'to': os.getenv('LINE_MY_ADRESS'),
     'messages':[
         {
             'type': 'flex',
             'altText': message,
             'contents': {
-    "type": "bubble",
-    "size": "mega",
-    "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-            {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": location,
-                        "color": "#000000",
-                        "size": "xl",
-                        "weight": "bold"
-                    },
-                    {
-                        "type": "text",
-                        "text": date,
-                        "color": "#000000",
-                        "size": "lg",
-                        "weight": "bold"
-                    }
-                ]
-            },
-            {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "image",
-                                "url": weather_icon,
-                                "size": "md"
-                            },
-                            {
-                                "type": "text",
-                                "text": weather,
-                                "align": "center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "contents": [
-                                    {
-                                        "type": "span",
-                                        "text": "最高  ",
-                                        "size": "lg",
-                                        "color": "#ff0000"
-                                    },
-                                    {
-                                        "type": "span",
-                                        "text": high_temp,
-                                        "size": "xxl",
-                                        "weight": "bold",
-                                        "color": "#ff0000"
-                                    },
-                                    {
-                                        "type": "span",
-                                        "text": "℃",
-                                        "size": "lg",
-                                        "color": "#ff0000"
-                                    }
-                                ]
-              },
-              {
-                "type": "text",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "最高  ",
-                    "size": "lg",
-                    "color": "#0000ff"
-                  },
-                  {
-                    "type": "span",
-                    "text": low_temp,
-                    "size": "xxl",
-                    "weight": "bold",
-                    "color": "#0000ff"
-                  },
-                  {
-                    "type": "span",
-                    "text": "℃",
-                    "size": "lg",
-                    "color": "#0000ff"
-                  }
-                ]
-              }
-            ],
-            "alignItems": "center",
-            "justifyContent": "center"
-          }
-        ]
-      }
-    ],
-    "paddingAll": "20px",
-    "backgroundColor": "#ffffff",
-    "spacing": "md",
-    "paddingTop": "22px"
-  }
-}
+                "type": "bubble",
+                "size": "mega",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": location,
+                                    "color": "#000000",
+                                    "size": "xl",
+                                    "weight": "bold"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": date,
+                                    "color": "#000000",
+                                    "size": "lg",
+                                    "weight": "bold"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "image",
+                                            "url": weather_icon,
+                                            "size": "md"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": weather,
+                                            "align": "center"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "最高  ",
+                                                    "size": "lg",
+                                                    "color": "#ff0000"
+                                                },
+                                                {
+                                                    "type": "span",
+                                                    "text": high_temp,
+                                                    "size": "xxl",
+                                                    "weight": "bold",
+                                                    "color": "#ff0000"
+                                                },
+                                                {
+                                                    "type": "span",
+                                                    "text": "℃",
+                                                    "size": "lg",
+                                                    "color": "#ff0000"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "text",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "最高  ",
+                                                    "size": "lg",
+                                                    "color": "#0000ff"
+                                                },
+                                                {
+                                                    "type": "span",
+                                                    "text": low_temp,
+                                                    "size": "xxl",
+                                                    "weight": "bold",
+                                                    "color": "#0000ff"
+                                                },
+                                                {
+                                                    "type": "span",
+                                                    "text": "℃",
+                                                    "size": "lg",
+                                                    "color": "#0000ff"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "alignItems": "center",
+                                    "justifyContent": "center"
+                                }
+                            ]
+                        }
+                    ],
+                    "paddingAll": "20px",
+                    "backgroundColor": "#ffffff",
+                    "spacing": "md",
+                    "paddingTop": "22px"
+                }
+            }
         }
     ]
 }
