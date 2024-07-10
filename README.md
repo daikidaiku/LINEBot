@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/-LINE-FFFFFF.svg?logo=LINE&style=flat">
 </p>
 
-# line-bot<!-- TODO 書く -->
+# line-bot
 
 LINEのBotを構成するシステムです。ここではcronを用いた自動送信、webhookを用いたメッセージへの返信を実現しています。
 
