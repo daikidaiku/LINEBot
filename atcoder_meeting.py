@@ -1,10 +1,6 @@
 from linebot.v3.messaging import Configuration, MessagingApi, ApiClient, PushMessageRequest, ApiException
 import requests
 from bs4 import BeautifulSoup
-import datetime
-import schedule
-import time
-import re
 import os
 from dotenv import load_dotenv
 

@@ -4,63 +4,94 @@
 <img src="https://img.shields.io/badge/-Visual%20Studio%20Code-007ACC.svg?logo=visual-studio-code&style=flat">
 <img src="https://img.shields.io/badge/-GitHub-181717.svg?logo=github&style=flat">
 <img src="https://img.shields.io/badge/-AWS Lambda-FFFFFF.svg?logo=AWSLambda&style=flat">
+<img src="https://img.shields.io/badge/-LINE-FFFFFF.svg?logo=LINE&style=flat">
 </p>
 
-# line-bot
+# line-bot<!-- TODO 書く -->
 
-<!-- This is a Python code to upload photos taken by Raspberry Pi to Google Drive. By using cron for interval shooting, you can check the current state of the laboratory.
-Additionally, by combining it with YOLO, you can check the number of people present.
+LINEのBotを構成するシステムです。ここではcronを用いた自動送信、webhookを用いたメッセージへの返信を実現しています。
 
-Raspberry Pi により撮影した写真をGoogle Drive にアップロードするPythonコードです。
-cron によるインターバル撮影により研究室の現在の様子を確認することができます。
-またyoloを組み合わせることで在室人数を確認することができます。 -->
 # DEMO
 ```mermaid
 flowchart TD
-    A[main.py] -->B{Check\ncredentials}
-    B -->|Yes|F
+    subgraph Raspberry Pi
+        cron --> weather[weather_notify.py]
+        cron --> garbage[garbage_notify.py]
+        cron --> atcoder[atcoder_notify.py]
+        cron --> meeting[atcoder_meeting.py]
+    end
+    weather --> LINE
+    garbage --> LINE
+    atcoder --> LINE
+    meeting --> LINE
+    H[LINE chat] --> |text message| webhook[webhook]
+    webhook --> if{if message}
+    if -.->|Picture|lab
+    if -.-> |Transfer|transfer
+    if -.-> |Other text|gemini
+
+    subgraph AWS Lambda
+        lab[lab_notify.py]
+        transfer[transfer_notify.py]
+        gemini[gemini_api.py]
+    end
+    lab --> LINE[LINE chat]
+    transfer --> LINE
+    gemini --> LINE
 
 ``` 
 
 # Features
-<!-- By specifying the ID on Google Drive, the photos will be overwritten. This ensures there is no worry about consuming too much storage space.
-
-Google Drive上のidを指定することで写真を上書きします。容量を圧迫する心配がないです。 -->
+### weather_notify.py
+スクレイピングにより、任意の地点における天気、最高気温、最低気温を取得します。
+### garbage_notify.py
+町田市のゴミ出しを通知するPythonコードです。
+### atcoder_notify.py
+AtCoderのABCコンテストを通知するPythonコードです。
+### atcoder_meeting.py
+コンテスト終了後にGoogle MeetのURLを通知するコードです。
+### lab_notify.py
+研究室の写真を送信するコードです。
+### transfer_notify.py
+任意の地点間における乗換案内を送信するコードです。
+### gemini_api.py
+条件に合わないテキストを送信した際に、Geminiが返信します。
 
 # Requirement
 
-<!-- * Python 3.9.2
-* PyDrive 1.3.1
-* python-dotenv 1.0.1 (Additional) -->
+* Python 3.9.2
+* beautifulsoup4 4.9.3
+* line-bot-sdk 3.5.1
+* requests 2.31.0
+* python-dotenv 1.0.1 (Additional)
 
 # Installation
-<!-- 
+
 Install PyDrive (and python-dotenv) with pip command.
 
 pipコマンドでPyDrive(、python-dotenv)をインストールしてください。
 
 ```bash
-pip３ install PyDrive
-pip3 install python-dotenv
-``` -->
+pip３ install beautifulsoup4
+pip3 install line-bot-sdk
+pip3 install requests
+pip3 install python-dotenv # Additional
+```
 
 # Usage
-<!-- 
 Clone the repository and Run "main.py" in the directory.
 
-リポジトリをクローンし、ディレクトリ内にある"main.py"を実行してください。
+リポジトリをクローンし、ディレクトリ内にあるPythonコードを実行してください。
 
 ```bash
-git clone https://github.com/daikidaiku/upload-lab-photo
-cd upload-lab-photo
-python3 main.py
-``` -->
+git clone https://github.com/daikidaiku/line-bot
+cd line-bot
+python3　hogehoge.py
+```
 
 # Note
 
-<!-- Since authentication is required for the first time, please use a smartphone or other device to authenticate as needed.
-
-初回は認証が必要となるため、適宜スマートフォン等を利用し認証してください。 -->
+LINEのトークンやAWSの設定は適宜行ってください。（後日追記予定）
 
 # Author
 
